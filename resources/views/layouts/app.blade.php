@@ -1,36 +1,80 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark-theme">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    <!-- loader-->
+    <link href="{{ asset('/') }}css/pace.min.css" rel="stylesheet" />
+    <script src="{{ asset('/') }}js/pace.min.js"></script>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    <!--plugins-->
+    <link href="{{ asset('/') }}plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="{{ asset('/') }}plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 
-            <!-- Page Content -->
-            <main>
+    <!-- CSS Files -->
+    <link href="{{ asset('/') }}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('/') }}css/bootstrap-extended.css" rel="stylesheet">
+    <link href="{{ asset('/') }}css/style.css" rel="stylesheet">
+    <link href="{{ asset('/') }}css/icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!--Theme Styles-->
+    <link href="{{ asset('/') }}css/dark-theme.css" rel="stylesheet" />
+    <link href="{{ asset('/') }}css/semi-dark.css" rel="stylesheet" />
+    <link href="{{ asset('/') }}css/header-colors.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--start wrapper-->
+    <div class="wrapper">
+
+        @include('layouts.sidebar')
+        @include('layouts.navigation')
+
+        <!-- Page Content -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
                 {{ $slot }}
-            </main>
-        </div>
-    </body>
+            </div>
+
+            <!--start footer-->
+            <footer class="footer">
+                <div class="footer-text">
+                    Copyright © {{ date('Y') }}. All right reserved.
+                </div>
+            </footer>
+            <!--end footer-->
+
+
+            <!--Start Back To Top Button-->
+            <a href="javaScript:;" class="back-to-top">
+                <ion-icon name="arrow-up-outline"></ion-icon>
+            </a>
+            <!--End Back To Top Button-->
+
+            <!--start overlay-->
+            <div class="overlay nav-toggle-icon"></div>
+            <!--end overlay-->
+
+
+            <!-- JS Files-->
+            <script src="{{ asset('/') }}js/jquery.min.js"></script>
+            <script src="{{ asset('/') }}plugins/simplebar/js/simplebar.min.js"></script>
+            <script src="{{ asset('/') }}plugins/metismenu/js/metisMenu.min.js"></script>
+            <script src="{{ asset('/') }}js/bootstrap.bundle.min.js"></script>
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <!--plugins-->
+            <script src="{{ asset('/') }}plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('/') }}js/index.js"></script>
+            <!-- Main JS-->
+            <script src="{{ asset('/') }}js/main.js"></script>
+
+
+</body>
+
 </html>

@@ -1,100 +1,269 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+<!--start top header-->
+<header class="top-header">
+    <nav class="navbar navbar-expand gap-3">
+        <div class="toggle-icon">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <form class="searchbar">
+            <div class="position-absolute top-50 translate-middle-y search-icon ms-3">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+            <input class="form-control" type="text" placeholder="Search for anything">
+            <div class="position-absolute top-50 translate-middle-y search-close-icon">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </form>
+        <div class="top-navbar-right ms-auto">
+
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link mobile-search-button" href="javascript:;">
+                        <div class="">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </div>
                     </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dark-mode-icon" href="javascript:;">
+                        <div class="mode-icon">
+                            <ion-icon name="moon-outline"></ion-icon>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item dropdown dropdown-large dropdown-apps">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="">
+                            <ion-icon name="apps-outline"></ion-icon>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                        <div class="row row-cols-3 g-3 p-3">
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-purple text-white">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Orders</div>
                             </div>
-                        </button>
-                    </x-slot>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-info text-white">
+                                    <ion-icon name="people-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Teams</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-success text-white">
+                                    <ion-icon name="shield-checkmark-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Tasks</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-danger text-white">
+                                    <ion-icon name="videocam-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Media</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-warning text-white">
+                                    <ion-icon name="file-tray-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Files</div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="app-box mx-auto bg-gradient-branding text-white">
+                                    <ion-icon name="notifications-outline"></ion-icon>
+                                </div>
+                                <div class="app-title">Alerts</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown dropdown-large">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="position-relative">
+                            <span class="notify-badge">8</span>
+                            <ion-icon name="notifications-outline"></ion-icon>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="javascript:;">
+                            <div class="msg-header">
+                                <p class="msg-header-title">{{ __('Notifications') }}</p>
+                                <p class="msg-header-clear ms-auto">Marks all as read</p>
+                            </div>
+                        </a>
+                        <div class="header-notifications-list">
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-primary">
+                                        <ion-icon name="cart-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+                                                ago</span></h6>
+                                        <p class="msg-info">You have recived new orders</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-danger">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
+                                                ago</span></h6>
+                                        <p class="msg-info">5 new user registered</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-success">
+                                        <ion-icon name="document-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
+                                                ago</span></h6>
+                                        <p class="msg-info">The pdf files generated</p>
+                                    </div>
+                                </div>
+                            </a>
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-info">
+                                        <ion-icon name="checkmark-done-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Product Approved <span class="msg-time float-end">2
+                                                hrs ago</span></h6>
+                                        <p class="msg-info">Your new product has approved</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-warning">
+                                        <ion-icon name="send-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
+                                                ago</span></h6>
+                                        <p class="msg-info">5.1 min avarage time response</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-danger">
+                                        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
+                                                ago</span></h6>
+                                        <p class="msg-info">New customer comments recived</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-primary">
+                                        <ion-icon name="albums-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
+                                                ago</span></h6>
+                                        <p class="msg-info">24 new authors joined last week</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-success">
+                                        <ion-icon name="shield-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5
+                                                hrs
+                                                ago</span></h6>
+                                        <p class="msg-info">Successfully shipped your item</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex align-items-center">
+                                    <div class="notify text-warning">
+                                        <ion-icon name="cafe-outline"></ion-icon>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
+                                                ago</span></h6>
+                                        <p class="msg-info">45% less alerts last 4 weeks</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="javascript:;">
+                            <div class="text-center msg-footer">View All Notifications</div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown dropdown-user-setting">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;"
+                        data-bs-toggle="dropdown">
+                        <div class="user-setting">
+                            <img src="{{ asset('storage') }}/images/avatars/06.png" class="user-img" alt="">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="javascript:;">
+                                <div class="d-flex flex-row align-items-center gap-2">
+                                    <img src="{{ asset('storage') }}/images/avatars/06.png" alt=""
+                                        class="rounded-circle" width="54" height="54">
+                                    <div class="">
+                                        <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->name }}</h6>
+                                        <small
+                                            class="mb-0 dropdown-user-designation text-secondary">{{ Auth::user()->role }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>{{ __('Profile') }}</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <ion-icon name="log-out-outline"></ion-icon>
+                                    </div>
+                                    <div class="ms-3"><span>{{ __('Logout') }}</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+            </ul>
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
         </div>
-    </div>
-
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
+    </nav>
+</header>
+<!--end top header-->

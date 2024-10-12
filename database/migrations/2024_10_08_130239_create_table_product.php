@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('products_ppob', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->integer('originalPrice');
-            $table->integer('discountPrice');
-            $table->string('promoType');
-            $table->string('description');
+            $table->string('code');
+            $table->integer('original_price');
+            $table->integer('cust_price');
+            $table->integer('discount_price');
+            $table->enum('promo_type', ['percentage', 'fixed'])->nullable();
+            $table->string('note')->nullable();
             $table->string('image');
-            $table->enum('status', ['active', 'inactive']);
-            $table->string('categoryId');
+            $table->enum('status', ['empty', 'available'])->default('available');
+            $table->integer('category_id');
+            $table->string('provider');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('products_ppob');
     }
 };

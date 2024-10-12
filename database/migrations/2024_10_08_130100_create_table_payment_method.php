@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('accountName');
-            $table->string('accountNumber');
+            $table->string('account_name');
+            $table->string('account_number');
             $table->string('currency');
             $table->string('provider');
-            $table->string('useMotodePayment');
+            $table->string('use_motode_payment');
             $table->timestamps();
         });
     }

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categoris_operator', function (Blueprint $table) {
+        Schema::create('categories_operator', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('qtyOperator');
+            $table->integer('qty_operator');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoris_operator');
+        Schema::dropIfExists('categories_operator');
     }
 };

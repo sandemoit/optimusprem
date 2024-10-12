@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('add_ons', function (Blueprint $table) {
             $table->id();
-            $table->string('urlMidtrans');
-            $table->string('idMarchantMidtrans');
-            $table->string('serverKeyMidtrans');
-            $table->string('clientKeyMidtrans');
-            $table->string('urlDigiFlazz');
-            $table->string('usernameDigiFlazz');
-            $table->string('keyDigiFlazz');
-            $table->string('tokenWAGW');
+            $table->string('url_midtrans');
+            $table->string('id_marchant_midtrans');
+            $table->string('server_key_midtrans');
+            $table->string('client_key_midtrans');
+            $table->string('url_digi_flazz');
+            $table->string('username_digi_flazz');
+            $table->string('key_digi_flazz');
+            $table->string('token_wagw');
             $table->timestamps();
         });
     }

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('deposit', function (Blueprint $table) {
             $table->id();
-            $table->string('topupId');
+            $table->string('topup_id');
             $table->integer('member');
-            $table->string('paymentMethod');
+            $table->string('payment_method');
             $table->integer('amount');
-            $table->integer('totalTransfer');
-            $table->integer('codeUnique');
+            $table->integer('total_transfer');
+            $table->integer('code_unique');
             $table->string('status');
             $table->timestamps();
         });

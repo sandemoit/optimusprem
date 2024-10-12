@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['admin', 'customer'])->after('email');
             $table->string('status')->default('active')->after('email');
+            $table->string('image')->nullable()->after('email');
             $table->string('number')->nullable()->after('email');
             $table->integer('saldo')->default(0)->after('email');
         });

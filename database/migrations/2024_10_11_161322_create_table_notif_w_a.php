@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('notifikasi_whatsapp', function (Blueprint $table) {
             $table->id();
-            $table->text('trxPending');
-            $table->text('depositPending');
-            $table->text('trxSuccess');
-            $table->text('depositSuccess');
+            $table->text('trx_pending');
+            $table->text('deposit_pending');
+            $table->text('trx_success');
+            $table->text('deposit_success');
             $table->timestamps();
         });
     }

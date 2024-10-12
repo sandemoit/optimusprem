@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments_categoris', function (Blueprint $table) {
+        Schema::create('categories_payment', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('qtyChannel');
+            $table->integer('qty_channel');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments_categoris');
+        Schema::dropIfExists('categories_payment');
     }
 };
